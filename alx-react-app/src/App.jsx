@@ -1,4 +1,3 @@
-// src/App.jsx
 import WelcomeMessage from './components/WelcomeMessage';
 
 function App() {
@@ -9,4 +8,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
