@@ -1,6 +1,4 @@
-// src/App.jsx
-import WelcomeMessage from './components/WelcomeMessage';
-
+import WelcomeMessage from './components/welcomeMessage';
 function App() {
   return (
     <div>
