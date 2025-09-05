@@ -1,8 +1,9 @@
 function MainContent() {
   return (
-    <Main>
+    <main>
       <p>I love to visit New York, Paris, and Tokyo.</p>
-    </Main>
+    </main>
   );
 }
+
 export default MainContent;

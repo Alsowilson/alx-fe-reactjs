@@ -9,7 +9,7 @@ function App() {
       <WelcomeMessage />
       <Header />
       <MainContent />
-      <Footer />
+      <Footer />   
     </div>
   );
 }
