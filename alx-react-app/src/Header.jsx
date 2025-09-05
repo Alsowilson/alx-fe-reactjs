@@ -1,8 +1,8 @@
 function Header() {
   return (
-    <header>
+    <Header>
       <h1>My Favorite Cities</h1>
-    </header>
+    </Header>
   );
 }
 export default Header;
