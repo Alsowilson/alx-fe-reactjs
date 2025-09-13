@@ -4,7 +4,7 @@ import useRecipeStore from '../store/recipeStore';
 
 const DeleteRecipeButton = ({ recipeId }) => {
   const deleteRecipe = useRecipeStore((state) => state.deleteRecipe);
-  const navigate = useNavigate(); // ✅ required by checker
+  const navigate = useNavigate(); 
 
   const handleDelete = () => {
     deleteRecipe(recipeId);
