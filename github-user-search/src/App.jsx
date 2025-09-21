@@ -1,4 +1,6 @@
 import also from './components/also.jsx';
+import { alsoservice } from './services/AlsoService.js';
+
 function App() {
   return (
     <div> 
@@ -10,3 +12,4 @@ function App() {
 }
 
 export default App;
+
