@@ -1,5 +1,4 @@
-import also from './components/also.jsx';
-import { alsoservice } from './services/AlsoService.js';
+import Search from './components/Search.jsx';
 
 function App() {
   return (
