@@ -1,12 +1,12 @@
 import React from 'react';
-import FormikForm from './components/formikForm';
+   import FormikForm from './components/formikForm';
 
-function App() {
-  return (
-    <div>
-      <FormikForm />
-    </div>
-  );
-}
+   function App() {
+     return (
+       <div>
+         <FormikForm />
+       </div>
+     );
+   }
 
-export default App;
+   export default App;
