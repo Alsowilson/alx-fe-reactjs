@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import data from "../data.json";
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    setRecipes(data); // Load mock data
+    setRecipes(data);
   }, []);
 
   return (
@@ -16,9 +17,10 @@ function HomePage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
-          <div
+          <Link
+            to={`/recipe/${recipe.id}`}
             key={recipe.id}
-            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden block"
           >
             <img
               src={recipe.image}
@@ -31,7 +33,7 @@ function HomePage() {
               </h2>
               <p className="text-gray-600 text-sm">{recipe.summary}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
