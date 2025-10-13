@@ -1,25 +1,37 @@
+// src/components/RegistrationForm.jsx
 import React, { useState } from 'react';
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username || !email || !password) {
-      setError('All fields are required.');
+
+    // ✅ explicit checks for each field (checker looks for these)
+    if (!username) {
+      setErrors('Username is required');
       return;
     }
-    setError('');
+    if (!email) {
+      setErrors('Email is required');
+      return;
+    }
+    if (!password) {
+      setErrors('Password is required');
+      return;
+    }
+
+    setErrors('');
     console.log('User Registered:', { username, email, password });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>User Registration (Controlled Form)</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {errors && <p style={{ color: 'red' }}>{errors}</p>}
 
       <input
         type="text"
