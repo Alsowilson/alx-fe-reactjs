@@ -5,6 +5,7 @@ function AddRecipeForm({ addRecipe }) {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [ingredients, setIngredients] = useState("");
+  const [steps, setSteps] = useState("");
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function AddRecipeForm({ addRecipe }) {
     if (!title.trim()) newErrors.title = "Title is required.";
     if (!summary.trim()) newErrors.summary = "Summary is required.";
     if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required.";
+    if (!steps.trim()) newErrors.steps = "Preparation steps are required.";
     return newErrors;
   };
 
@@ -30,6 +32,7 @@ function AddRecipeForm({ addRecipe }) {
       title,
       summary,
       ingredients: ingredients.split(","),
+      steps: steps.split("."), // splitting into sentences
       image: image || "https://via.placeholder.com/300x200.png?text=New+Recipe",
     };
 
@@ -47,6 +50,7 @@ function AddRecipeForm({ addRecipe }) {
           ➕ Add New Recipe
         </h2>
 
+        {/* Title */}
         <div className="mb-4">
           <label className="block text-gray-600 mb-1">Title</label>
           <input
@@ -58,6 +62,7 @@ function AddRecipeForm({ addRecipe }) {
           {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
         </div>
 
+        {/* Summary */}
         <div className="mb-4">
           <label className="block text-gray-600 mb-1">Summary</label>
           <textarea
@@ -70,6 +75,7 @@ function AddRecipeForm({ addRecipe }) {
           )}
         </div>
 
+        {/* Ingredients */}
         <div className="mb-4">
           <label className="block text-gray-600 mb-1">
             Ingredients (comma-separated)
@@ -85,6 +91,20 @@ function AddRecipeForm({ addRecipe }) {
           )}
         </div>
 
+        {/* Steps */}
+        <div className="mb-4">
+          <label className="block text-gray-600 mb-1">Preparation Steps</label>
+          <textarea
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
+            className="w-full border rounded p-2 h-24 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          {errors.steps && (
+            <p className="text-red-500 text-sm">{errors.steps}</p>
+          )}
+        </div>
+
+        {/* Image */}
         <div className="mb-4">
           <label className="block text-gray-600 mb-1">Image URL (optional)</label>
           <input
@@ -107,3 +127,4 @@ function AddRecipeForm({ addRecipe }) {
 }
 
 export default AddRecipeForm;
+
