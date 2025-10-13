@@ -1,15 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AddRecipe({ addRecipe }) {
+function AddRecipeForm({ addRecipe }) {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [image, setImage] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!title.trim()) newErrors.title = "Title is required.";
+    if (!summary.trim()) newErrors.summary = "Summary is required.";
+    if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required.";
+    return newErrors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     const newRecipe = {
       id: Date.now(),
@@ -19,15 +33,15 @@ function AddRecipe({ addRecipe }) {
       image: image || "https://via.placeholder.com/300x200.png?text=New+Recipe",
     };
 
-    addRecipe(newRecipe); // Add recipe to main list
-    navigate("/"); // Redirect back to home page
+    addRecipe(newRecipe);
+    navigate("/");
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md"
+        className="bg-white shadow-xl rounded-lg p-6 w-full max-w-lg md:max-w-md sm:max-w-sm"
       >
         <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
           ➕ Add New Recipe
@@ -39,9 +53,9 @@ function AddRecipe({ addRecipe }) {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
             className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
+          {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
         </div>
 
         <div className="mb-4">
@@ -49,9 +63,11 @@ function AddRecipe({ addRecipe }) {
           <textarea
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-            required
             className="w-full border rounded p-2 h-20 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
+          {errors.summary && (
+            <p className="text-red-500 text-sm">{errors.summary}</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -62,13 +78,15 @@ function AddRecipe({ addRecipe }) {
             type="text"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
-            required
             className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
+          {errors.ingredients && (
+            <p className="text-red-500 text-sm">{errors.ingredients}</p>
+          )}
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-600 mb-1">Image URL</label>
+          <label className="block text-gray-600 mb-1">Image URL (optional)</label>
           <input
             type="url"
             value={image}
@@ -88,4 +106,4 @@ function AddRecipe({ addRecipe }) {
   );
 }
 
-export default AddRecipe;
+export default AddRecipeForm;
