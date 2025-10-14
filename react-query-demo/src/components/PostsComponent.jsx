@@ -22,6 +22,8 @@ const PostsComponent = () => {
     queryFn: fetchPosts,
     staleTime: 5000,
     cacheTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
   });
 
   if (isLoading) return <p>Loading posts...</p>;
@@ -29,7 +31,7 @@ const PostsComponent = () => {
 
   return (
     <div>
-      <button onClick={() => refetch()} disabled={isFetching}>
+      <button onClick={refetch} disabled={isFetching}>
         {isFetching ? "Refetching..." : "Refetch Posts"}
       </button>
 
@@ -46,4 +48,5 @@ const PostsComponent = () => {
 };
 
 export default PostsComponent;
+
 
