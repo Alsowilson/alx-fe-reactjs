@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import TodoList from "../components/TodoList";
 
 describe("TodoList component", () => {
-  test("renders the initial todos", () => {
+  test("renders initial todos", () => {
     render(<TodoList />);
     expect(screen.getByText("Buy milk")).toBeInTheDocument();
     expect(screen.getByText("Walk the dog")).toBeInTheDocument();
@@ -14,19 +14,19 @@ describe("TodoList component", () => {
   test("adds a new todo", () => {
     render(<TodoList />);
     const input = screen.getByPlaceholderText("Add todo...");
-    const button = screen.getByText("Add");
+    const addButton = screen.getByText("Add");
 
-    fireEvent.change(input, { target: { value: "New Todo" } });
-    fireEvent.click(button);
+    fireEvent.change(input, { target: { value: "Learn React Testing" } });
+    fireEvent.click(addButton);
 
-    expect(screen.getByText("New Todo")).toBeInTheDocument();
+    expect(screen.getByText("Learn React Testing")).toBeInTheDocument();
   });
 
   test("toggles a todo's completion", () => {
     render(<TodoList />);
     const todoItem = screen.getByText("Buy milk");
 
-    // Click once to mark as complete
+    // Click once to mark completed
     fireEvent.click(todoItem);
     expect(todoItem).toHaveStyle("text-decoration: line-through");
 
