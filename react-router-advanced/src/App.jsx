@@ -1,36 +1,38 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Profile from "./pages/Profile";
+// src/App.jsx
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
+import Profile from "./components/Profile";
+import UserDetails from "./components/UserDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/profile">Profile</Link>
-      </nav>
-
+    <BrowserRouter>
       <Routes>
+        {/* Public Route */}
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/posts/:id" element={<Post />} />
 
-
-        {/* Protected route */}
+        {/* Protected Dashboard */}
         <Route
-          path="/profile/*"
+          path="/dashboard"
           element={
             <ProtectedRoute>
-              <Profile />
+              <Dashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          {/* Nested Route */}
+          <Route path="profile" element={<Profile />} />
+        </Route>
+
+        {/* Dynamic Route */}
+        <Route path="/users/:id" element={<UserDetails />} />
+
+        {/* Redirect unknown paths */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 
