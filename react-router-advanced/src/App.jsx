@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public route */}
+        {/* Public Route */}
         <Route path="/" element={<Home />} />
 
         {/* Protected route */}
@@ -20,15 +20,21 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           }
-        >
-          {/* ✅ Nested route */}
-          <Route path="profile" element={<Profile />} />
-        </Route>
+        />
 
-        {/* ✅ Dynamic route */}
+        {/* Nested + Dynamic route inside Profile */}
+        <Route
+          path="/profile/*"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Dynamic route for users */}
         <Route path="/users/:id" element={<UserDetails />} />
 
-        {/* Redirect unknown routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

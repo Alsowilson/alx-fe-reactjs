@@ -4,11 +4,9 @@ function UserDetails() {
   const { id } = useParams();
   return (
     <div>
-      <h3>User Details Page</h3>
-      {/* ✅ Explicitly reference the dynamic parameter */}
-      <p>Dynamic route parameter: {id}</p>
+      <h3>Dynamic route: Viewing user {id}</h3>
     </div>
   );
 }
-
 export default UserDetails;
+

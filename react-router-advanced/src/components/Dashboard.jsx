@@ -1,18 +1,14 @@
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   return (
     <div>
       <h2>Dashboard</h2>
-      <nav>
-        <Link to="profile">Profile</Link>
-      </nav>
-
-      {/* ✅ Nested route outlet */}
-      <Outlet />
+      <Link to="/profile">Go to Profile</Link>
     </div>
   );
 }
 
 export default Dashboard;
+
 
