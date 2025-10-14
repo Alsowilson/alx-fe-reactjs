@@ -1,4 +1,5 @@
 function ProfileSettings() {
-  return <h3>This is the Profile Settings page.</h3>;
+  return <h3>Profile Settings Content</h3>;
 }
+
 export default ProfileSettings;

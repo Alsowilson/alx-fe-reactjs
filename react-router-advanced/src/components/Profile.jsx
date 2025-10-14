@@ -12,7 +12,7 @@ function Profile() {
         <Link to="settings">Profile Settings</Link>
       </nav>
 
-      {/* ✅ Nested routes inside Profile */}
+      {/* ✅ Nested Routes */}
       <Routes>
         <Route path="details" element={<ProfileDetails />} />
         <Route path="settings" element={<ProfileSettings />} />
@@ -22,3 +22,4 @@ function Profile() {
 }
 
 export default Profile;
+

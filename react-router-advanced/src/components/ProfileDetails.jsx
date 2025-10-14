@@ -1,4 +1,5 @@
 function ProfileDetails() {
-  return <h3>This is the Profile Details page.</h3>;
+  return <h3>Profile Details Content</h3>;
 }
+
 export default ProfileDetails;

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
-import UserDetails from "./components/UserDetails";
+import UserPage from "./components/UserPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         {/* Public Route */}
         <Route path="/" element={<Home />} />
 
-        {/* Protected route */}
+        {/* Protected Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -22,7 +22,7 @@ function App() {
           }
         />
 
-        {/* Nested + Dynamic route inside Profile */}
+        {/* Protected Profile (with nested routes inside) */}
         <Route
           path="/profile/*"
           element={
@@ -32,9 +32,10 @@ function App() {
           }
         />
 
-        {/* Dynamic route for users */}
-        <Route path="/users/:id" element={<UserDetails />} />
+        {/* ✅ Dynamic Route Example */}
+        <Route path="/users/:id" element={<UserPage />} />
 
+        {/* Redirect for unknown routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
@@ -42,4 +43,5 @@ function App() {
 }
 
 export default App;
+
 

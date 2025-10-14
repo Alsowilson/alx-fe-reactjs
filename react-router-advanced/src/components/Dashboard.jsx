@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
-
 function Dashboard() {
   return (
     <div>
-      <h2>Dashboard</h2>
-      <Link to="/profile">Go to Profile</Link>
+      <h2>Dashboard Page</h2>
+      <p>Welcome to your dashboard.</p>
     </div>
   );
 }
 
 export default Dashboard;
+
 
 
