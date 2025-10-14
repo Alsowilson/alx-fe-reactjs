@@ -4,10 +4,15 @@ function Dashboard() {
   return (
     <div>
       <h2>Dashboard</h2>
-      <Link to="profile">Go to Profile</Link>
-      <Outlet /> {/* Nested route content renders here */}
+      <nav>
+        <Link to="profile">Profile</Link>
+      </nav>
+
+      {/* ✅ Nested route outlet */}
+      <Outlet />
     </div>
   );
 }
 
 export default Dashboard;
+

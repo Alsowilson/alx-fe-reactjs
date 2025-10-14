@@ -1,4 +1,5 @@
 function Profile() {
-  return <h3>User Profile Page</h3>;
+  return <h3>This is the Profile Page (Nested Route)</h3>;
 }
+
 export default Profile;

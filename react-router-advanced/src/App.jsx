@@ -1,4 +1,3 @@
-// src/App.jsx
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
@@ -10,10 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Route */}
+        {/* Public route */}
         <Route path="/" element={<Home />} />
 
-        {/* Protected Dashboard */}
+        {/* Protected route */}
         <Route
           path="/dashboard"
           element={
@@ -22,14 +21,14 @@ function App() {
             </ProtectedRoute>
           }
         >
-          {/* Nested Route */}
+          {/* ✅ Nested route */}
           <Route path="profile" element={<Profile />} />
         </Route>
 
-        {/* Dynamic Route */}
+        {/* ✅ Dynamic route */}
         <Route path="/users/:id" element={<UserDetails />} />
 
-        {/* Redirect unknown paths */}
+        {/* Redirect unknown routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

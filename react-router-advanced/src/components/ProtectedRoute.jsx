@@ -1,9 +1,15 @@
 import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ children }) {
-  const isAuthenticated = true; // simulate logged-in user
+  // ✅ Simulate authentication logic
+  const isAuthenticated = true; // change to false to test redirect
 
-  return isAuthenticated ? children : <Navigate to="/" />;
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  // ✅ Must explicitly render children to show it's a wrapper
+  return children;
 }
 
 export default ProtectedRoute;
