@@ -11,46 +11,43 @@ export default function TodoList() {
   const [todos, setTodos] = useState(initialTodos);
 
   function addTodo(text) {
-    const nextId = todos.length ? Math.max(...todos.map(t => t.id)) + 1 : 1;
-    setTodos([{ id: nextId, text, completed: false }, ...todos]);
+    const newTodo = {
+      id: todos.length + 1,
+      text,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
   }
 
   function toggleTodo(id) {
-    setTodos(todos.map(t => (t.id === id ? { ...t, completed: !t.completed } : t)));
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   }
 
   function deleteTodo(id) {
-    setTodos(todos.filter(t => t.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
 
   return (
     <div>
       <h1>Todo List</h1>
       <AddTodoForm onAdd={addTodo} />
-      <ul aria-label="todo-list">
+      <ul>
         {todos.map((todo) => (
-          <li
-            key={todo.id}
-            data-testid={`todo-${todo.id}`}
-            aria-checked={todo.completed}
-            style={{ cursor: "pointer", display: "flex", gap: "8px", alignItems: "center" }}
-          >
+          <li key={todo.id}>
             <span
               onClick={() => toggleTodo(todo.id)}
               style={{
                 textDecoration: todo.completed ? "line-through" : "none",
-                flex: 1
+                cursor: "pointer",
               }}
             >
               {todo.text}
             </span>
-            <button
-              aria-label={`delete-${todo.id}`}
-              onClick={() => deleteTodo(todo.id)}
-              type="button"
-            >
-              Delete
-            </button>
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>
