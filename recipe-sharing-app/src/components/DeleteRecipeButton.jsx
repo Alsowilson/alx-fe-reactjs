@@ -6,10 +6,16 @@ const DeleteRecipeButton = ({ id, afterDelete }) => {
 
   const handleDelete = () => {
     deleteRecipe(id);
-    if (afterDelete) afterDelete();
+    if (afterDelete) {
+      afterDelete();
+    }
   };
 
-  return <button onClick={handleDelete}>Delete Recipe</button>;
+  return (
+    <button onClick={handleDelete}>
+      Delete Recipe
+    </button>
+  );
 };
 
 export default DeleteRecipeButton;
