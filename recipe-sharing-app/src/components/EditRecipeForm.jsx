@@ -1,44 +1,31 @@
 import React, { useState } from 'react';
-import useRecipeStore from '../store/recipeStore';
+import { useRecipeStore } from './recipeStore';
 
 const EditRecipeForm = ({ recipe }) => {
-  const [name, setName] = useState(recipe.name);
-  const [description, setDescription] = useState(recipe.description);
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
+  const [title, setTitle] = useState(recipe.title);
+  const [description, setDescription] = useState(recipe.description);
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // ✅ required by checker
-
-    updateRecipe({
-      ...recipe,
-      name,
-      description,
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateRecipe({ ...recipe, title, description });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Recipe Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Description:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <button type="submit">Update Recipe</button>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <button type="submit">Save Changes</button>
     </form>
   );
 };
 
 export default EditRecipeForm;
-
-
-
